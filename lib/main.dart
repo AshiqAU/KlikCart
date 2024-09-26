@@ -1,37 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:wc_demo/src/ui_lib/bootstrap.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  final root = await bootstrap();
+  runApp(root);
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
-  // Test Push
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        //test push
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHome(),
-    );
-  }
-}
-
-class MyHome extends StatefulWidget {
-  const MyHome({super.key});
-
-  @override
-  State<MyHome> createState() => _MyHomeState();
-}
-
-class _MyHomeState extends State<MyHome> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
