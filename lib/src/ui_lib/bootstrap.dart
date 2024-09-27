@@ -12,11 +12,11 @@ import '../outer_layer/repository/user_repository.dart';
 FutureOr<Widget> bootstrap() async {
   final dio = configureDio();
   final restClient = RestClient(dio);
-  final chatRepo = UserRepository(client: restClient);
+  final repo = UserRepository(client: restClient);
 
   return MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => AppProvider()),
+      ChangeNotifierProvider(create: (_) => AppProvider(repo)),
     ],
     child: const App(),
   );

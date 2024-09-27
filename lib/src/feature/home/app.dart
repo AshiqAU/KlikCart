@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../../ui_lib/widgets/bottom_navbar.dart';
 import '../view/home_screen.dart';
 
 class App extends StatefulWidget {
@@ -24,6 +25,7 @@ class _AppState extends State<App> {
       themeMode: ThemeMode.light,
       routes: {
         ///screens
+        BottomNavBar.routeName: (context) =>  BottomNavBar(),
         HomeScreen.routeName: (context) =>  HomeScreen(),
       },
     );
