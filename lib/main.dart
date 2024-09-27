@@ -2,11 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:wc_demo/src/ui_lib/bootstrap.dart';
+import 'package:wc_demo/src/ui_lib/shared_prefs.dart';
 
 Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+ WidgetsFlutterBinding.ensureInitialized();
   final root = await bootstrap();
+  await sharedPrefs.init();
   runApp(root);
 }
 

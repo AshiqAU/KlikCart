@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 part 'user_response.g.dart';
 
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class UserResponse {
   @JsonKey(name: "type")
   final String type;

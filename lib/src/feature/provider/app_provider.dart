@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:wc_demo/src/outer_layer/model/res.dart';
-
 import '../../outer_layer/model/user_response.dart';
 import '../../outer_layer/repository/user_repository.dart';
 
@@ -59,7 +57,7 @@ class AppProvider with ChangeNotifier {
   String? get singleProduct {
     var item = userResponse.where((e) => e.title.startsWith("ad banner"));
     if (item.isEmpty) {
-      throw Exception('Singe product image not found!');
+     return '';
     }
     return item.first.imageUrl;
 

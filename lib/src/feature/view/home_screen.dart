@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Row(
               children: [
                 IconButton(
-                  icon: Icon(Icons.shopping_cart, color: Colors.black),
+                  icon: const Icon(Icons.shopping_cart, color: Colors.black),
                   onPressed: () {},
                 ),
                 const Expanded(
@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.search, color: Colors.black),
+                  icon: const Icon(Icons.search, color: Colors.black),
                   onPressed: () {},
                 ),
               ],
@@ -67,8 +67,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     builder: (BuildContext context) {
                       return Container(
                         width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: BoxDecoration(color: Colors.amber),
+                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                        decoration: const BoxDecoration(color: Colors.amber),
                         child: Image.network(e.imageUrl!, fit: BoxFit.cover),
                       );
                     },
@@ -94,8 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 250,
               child: ListView.separated(
-                separatorBuilder: (context, index) => SizedBox(width: 4,),
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16), // Added vertical padding
+                separatorBuilder: (context, index) => const SizedBox(width: 4,),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 scrollDirection: Axis.horizontal,
                 itemCount: notifier.mostPopularItems.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -112,25 +112,22 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            //single banner
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
                 onTap: notifier.generateData,
-                child: Container(
+                child: SizedBox(
                   height: 150,
                   width: double.infinity,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                       child: Image.network(notifier.singleProduct ??'',fit: BoxFit.cover,)),
-                  
                 ),
               ),
             ),
 
-            // Categories Section
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -145,10 +142,9 @@ class _HomeScreenState extends State<HomeScreen> {
             GridView.count(
               shrinkWrap: true,
               crossAxisCount: 4,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               children: List.generate(notifier.topCategoryItems.length, (index) {
                 return Container(
-
                   margin: const EdgeInsets.symmetric(horizontal: 4.0),
                   child: CategoryCard(
                     categoryName: notifier.topCategoryItems[index].title.toString(),
@@ -172,16 +168,16 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            Container(
+            SizedBox(
               height: 250,
               child: ListView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16), // Added vertical padding
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 scrollDirection: Axis.horizontal,
                 itemCount: notifier.mostPopularItems.length,
                 itemBuilder: (BuildContext context, int index) {
                   final contentItem = notifier.featuredItems.elementAt(index);
                   return Container(
-                    margin: EdgeInsets.symmetric(horizontal: 4),
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
                     child: ProductCard(
                       imageUrl: contentItem.productImage  ?? 'https://example.com/placeholder.jpg',
                       title:  contentItem.sku ?? 'No Name',
