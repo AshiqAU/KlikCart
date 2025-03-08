@@ -1,37 +1,22 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:wc_demo/src/ui_lib/bootstrap.dart';
+import 'package:wc_demo/src/ui_lib/shared_prefs.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  HttpOverrides.global = MyHttpOverrides();
+ WidgetsFlutterBinding.ensureInitialized();
+  final root = await bootstrap();
+  await sharedPrefs.init();
+  runApp(root);
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // Test Push
+class MyHttpOverrides extends HttpOverrides{
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        //test push
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHome(),
-    );
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
   }
 }
 
-class MyHome extends StatefulWidget {
-  const MyHome({super.key});
-
-  @override
-  State<MyHome> createState() => _MyHomeState();
-}
-
-class _MyHomeState extends State<MyHome> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
